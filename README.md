@@ -2,7 +2,7 @@
 
 This is a React-based web application for tracking your favorite TV shows. The app allows you to search for shows, view today's airing shows, and manage your favorite shows. It uses the [The Movie Database (TMDb) API](https://www.themoviedb.org/documentation/api) to fetch TV show data.
 
-The main purpose of this app is to provide a centralized platform for users to track the release of the next episode of their favorite shows. In the "Favorites" section, the app displays a countdown to the release of the next episode for each show, helping users stay informed about upcoming episodes.
+The main purpose of this app is to provide a centralized platform for users to track the release of the next episode of their favourite shows. In the "Favourite" section, the app displays a countdown to the release of the next episode for each show, helping users stay informed about upcoming episodes.
 
 ## Getting Started
 
