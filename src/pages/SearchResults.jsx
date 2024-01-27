@@ -22,7 +22,7 @@ const SearchResults = () => {
 								alt={`${result.name} Poster`}
 							/>{" "}
 							<button onClick={() => addToFavourite(result)}>
-								<NavLink to="../favourites">Add to favourite</NavLink>
+								<NavLink to="../favourite">Add to favourite</NavLink>
 							</button>
 						</li>
 					))}
