@@ -3,7 +3,6 @@
 // 1. import needed functions and dependencies
 import { useAppContext } from "../components/AppContext";
 
-
 // Styles for div, ul, and li sections
 const divStyle = {
 	position: "fixed",
@@ -21,6 +20,7 @@ const headerStyle = {
 	width: "100%",
 	height: "8%",
 	background: "#242424",
+	zIndex: 99,
 };
 
 const ulStyle = {
@@ -41,14 +41,26 @@ const imgButtonContainerStyle = {
 	flexDirection: "column",
 	alignItems: "center",
 	height: "auto",
-	boxSizing: "border-box", // Include padding and border in the total width and height
+	boxSizing: "border-box", //Include padding and border in the total width and height
+};
+
+const imgButtonContainerStyle2 = {
+	position: "relative", // Set the container position to relative
+};
+
+const closeButtonStyle = {
+	position: "absolute", // Set the button position to absolute
+	top: "0", // Adjust top to position it in the top part of the container
+	right: "0", // Adjust right to position it in the right part of the container
+	zIndex: 1, // Set z-index to 1 to ensure the button is above other elements
+	cursor: "pointer",
+	borderRadius: "0",
 };
 
 const Favorite = () => {
 	// Access global state and functions from the context
 	const { favorite, removeFavorite, formatCountdown } = useAppContext();
-	console.log("Favorite object:", favorite);
-	console.log("Favorite home:", favorite.homepage);
+
 	// JSX content for the Favourite component
 	return (
 		<div style={divStyle}>
@@ -59,18 +71,22 @@ const Favorite = () => {
 			<ul style={ulStyle}>
 				{/* maps over the favorite array */}
 				{favorite.map((favorite) => (
-
 					<li style={liStyle} key={favorite.id}>
 						<div style={imgButtonContainerStyle}>
 							<h2>{favorite.name.substring(0, 10)}...</h2>
-							<a href={favorite.homepage} target="_blank" rel="noopener noreferrer">
-								Visit Homepage
-							</a>
-							<img
-								style={{ height: "100%", borderRadius: "5px" }}
-								src={`https://image.tmdb.org/t/p/w185${favorite.poster_path}`}
-								alt={`${favorite.name} Poster`}
-							/>
+							<div style={imgButtonContainerStyle2}>
+								<img
+									style={{ height: "80%", borderRadius: "5px" }}
+									src={`https://image.tmdb.org/t/p/w185${favorite.poster_path}`}
+									alt={`${favorite.name} Poster`}
+								/>
+								<button
+									style={closeButtonStyle}
+									onClick={() => removeFavorite(favorite.id)}
+								>
+									X
+								</button>
+							</div>
 							<p style={{ width: "60%" }}>
 								{/* utility function defined in the context */}
 								{formatCountdown(
@@ -78,14 +94,22 @@ const Favorite = () => {
 									favorite.showLocation?.origin_country
 								)}
 							</p>
-							<button onClick={() => removeFavorite(favorite.id)}>
-								Remove
-							</button>
+							<a
+								href={favorite.homepage}
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								<img
+									style={{ width: "25%", height: "20%" }}
+									src={`https://image.tmdb.org/t/p/w185${favorite.showLocation?.logo_path}`}
+									alt={`${favorite.showLocation?.name}`}
+								/>
+							</a>
 						</div>
 					</li>
 				))}
 			</ul>
-		</div >
+		</div>
 	);
 };
 
