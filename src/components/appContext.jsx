@@ -66,9 +66,6 @@ const AppProvider = ({ children }) => {
 
 			if (isAlreadyInFavourite) {
 				alert("Show is already in favourite.");
-				setSearchResults([]);
-				setSearchQuery("");
-				setShowSearchResults(false);
 				return;
 			}
 
@@ -81,6 +78,7 @@ const AppProvider = ({ children }) => {
 			});
 
 			if (response.ok) {
+				alert("Show was added to favourite.");
 				const data = await response.json();
 
 				const nextEpisode = data.next_episode_to_air;
@@ -99,10 +97,6 @@ const AppProvider = ({ children }) => {
 					`Error fetching next episode details: ${response.status} - ${response.statusText}`
 				);
 			}
-
-			setSearchResults([]);
-			setSearchQuery("");
-			setShowSearchResults(false);
 		} catch (error) {
 			setError(`Error adding to favourite: ${error.message}`);
 		}
