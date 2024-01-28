@@ -1,4 +1,4 @@
-// SearchResults.js
+// SearchResults.jsx
 import React from "react";
 import { useAppContext } from "../components/appContext";
 

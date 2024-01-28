@@ -1,4 +1,4 @@
-// UserInput js
+// UserInput.jsx
 import React from "react";
 import { useAppContext } from "./appContext";
 import { NavLink } from "react-router-dom";
@@ -22,4 +22,4 @@ const UserInput = () => {
 	);
 };
 
-export default UserInput; //ShowSearch
+export default UserInput;
