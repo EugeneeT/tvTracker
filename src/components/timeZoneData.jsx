@@ -1,3 +1,6 @@
+// timeZoneData.jsx 
+
+// data to classify Show Origin and Time Zone
 const timeZoneData = [
 	{ iso_3166_1: "FR", ianaTimeZone: "Europe/Paris" },
 	{ iso_3166_1: "RU", ianaTimeZone: "Europe/Moscow" },
@@ -198,6 +201,7 @@ const timeZoneData = [
 	{ iso_3166_1: "YE", ianaTimeZone: "Asia/Aden" },
 	{ iso_3166_1: "ZM", ianaTimeZone: "Africa/Lusaka" },
 	{ iso_3166_1: "ZW", ianaTimeZone: "Africa/Harare" },
+	{ iso_3166_1: "", ianaTimeZone: "America/Los_Angeles" },
 ];
 
 export { timeZoneData };

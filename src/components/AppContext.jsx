@@ -1,17 +1,22 @@
-// appContext.jsx
+// AppContext.jsx
+
+// 1. import needed functions and dependencies
 import React, { createContext, useContext, useState, useEffect } from "react";
 
+// Time countdown calculation extensions
 import { DateTime } from "luxon";
 import { timeZoneData } from "./timeZoneData.jsx";
 
+
 const AppContext = createContext();
 
+// eslint-disable-next-line react/prop-types
 const AppProvider = ({ children }) => {
 	const [searchQuery, setSearchQuery] = useState("");
 	const [searchResults, setSearchResults] = useState([]);
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState(null);
-	const [favourite, setFavourite] = useState([]);
+	const [favorite, setFavorite] = useState([]);
 	const [showSearchResults, setShowSearchResults] = useState(false);
 	const [inputValue, setInputValue] = useState("");
 
@@ -60,12 +65,12 @@ const AppProvider = ({ children }) => {
 		handleSearch();
 	};
 
-	const addToFavourite = async (show) => {
+	const addToFavorite = async (show) => {
 		try {
-			const isAlreadyInFavourite = favourite.some((fav) => fav.id === show.id);
+			const isAlreadyInFavorite = favorite.some((fav) => fav.id === show.id);
 
-			if (isAlreadyInFavourite) {
-				alert("Show is already in favourite.");
+			if (isAlreadyInFavorite) {
+				// alert("Show is already in favorite.");
 				return;
 			}
 
@@ -78,19 +83,20 @@ const AppProvider = ({ children }) => {
 			});
 
 			if (response.ok) {
-				alert("Show was added to favourite.");
+				// alert("Show was added to favorite.");
 				const data = await response.json();
-
 				const nextEpisode = data.next_episode_to_air;
 				const showLocation = data.networks[0];
+				const homepage = data.homepage;
+				console.log(data)
 
-				setFavourite((prevFavourite) => {
-					const updatedFavourite = [
-						...prevFavourite,
-						{ ...show, nextEpisode, showLocation },
+				setFavorite((prevFavorite) => {
+					const updatedFavorite = [
+						...prevFavorite,
+						{ ...show, nextEpisode, showLocation, homepage, },
 					];
-					localStorage.setItem("favourite", JSON.stringify(updatedFavourite));
-					return updatedFavourite;
+					localStorage.setItem("favorite", JSON.stringify(updatedFavorite));
+					return updatedFavorite;
 				});
 			} else {
 				setError(
@@ -98,15 +104,15 @@ const AppProvider = ({ children }) => {
 				);
 			}
 		} catch (error) {
-			setError(`Error adding to favourite: ${error.message}`);
+			setError(`Error adding to favorite: ${error.message}`);
 		}
 	};
 
-	const removeFavourite = (showId) => {
-		setFavourite((prevFavourite) => {
-			const updatedFavourite = prevFavourite.filter((fav) => fav.id !== showId);
-			localStorage.setItem("favourite", JSON.stringify(updatedFavourite));
-			return updatedFavourite;
+	const removeFavorite = (showId) => {
+		setFavorite((prevFavorite) => {
+			const updatedFavorite = prevFavorite.filter((fav) => fav.id !== showId);
+			localStorage.setItem("favorite", JSON.stringify(updatedFavorite));
+			return updatedFavorite;
 		});
 	};
 
@@ -149,9 +155,9 @@ const AppProvider = ({ children }) => {
 	};
 
 	useEffect(() => {
-		const storedFavourite = localStorage.getItem("favourite");
-		if (storedFavourite) {
-			setFavourite(JSON.parse(storedFavourite));
+		const storedFavorite = localStorage.getItem("favorite");
+		if (storedFavorite) {
+			setFavorite(JSON.parse(storedFavorite));
 		}
 	}, []);
 
@@ -166,8 +172,8 @@ const AppProvider = ({ children }) => {
 				setLoading,
 				error,
 				setError,
-				favourite,
-				setFavourite,
+				favorite,
+				setFavorite,
 				showSearchResults,
 				setShowSearchResults,
 				inputValue,
@@ -175,8 +181,8 @@ const AppProvider = ({ children }) => {
 				handleSearch,
 				handleButtonClick,
 				handleInputChange,
-				addToFavourite,
-				removeFavourite,
+				addToFavorite,
+				removeFavorite,
 				formatCountdown,
 			}}
 		>

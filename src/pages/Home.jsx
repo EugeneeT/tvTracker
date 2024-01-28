@@ -1,48 +1,52 @@
 // Home.jsx
 
-// import components and dependencies
-import React from "react";
-import { AppProvider } from "../components/appContext";
-import UserInput from "../components/userInput";
+// 1. import needed functions and dependencies
+import { AppProvider } from "../components/AppContext";
 import { Outlet } from "react-router-dom";
-import NavBar from "../components/navBar";
+
+// 2. import components
+import UserInput from "../components/UserInput";
+import NavBar from "../components/NavBar";
+import Footer from "../components/Footer";
+
+// Styles for header, main, and footer sections
+const headerStyle = {
+	position: "fixed",
+	top: 0,
+	left: 0,
+	width: "100%",
+	height: "15vh",
+	background: "#333",
+	display: "flex",
+	flexDirection: "column",
+	alignItems: "center",
+	zIndex: "99",
+};
+
+const footerStyle = {
+	position: "fixed",
+	bottom: 0,
+	left: 0,
+	width: "100%",
+	height: "10vh",
+	background: "#333",
+	display: "flex",
+	flexDirection: "column",
+	alignItems: "center",
+	zIndex: "99",
+};
+
+const mainStyle = {
+	position: "fixed",
+	top: "15vh",
+	bottom: "10vh",
+	left: 0,
+	width: "100%",
+	maxHeight: "75vh", // Set a max height for the main container
+};
+
 
 const Home = () => {
-	// Styles for header, main, and footer sections
-	const headerStyle = {
-		position: "fixed",
-		top: 0,
-		left: 0,
-		width: "100%",
-		height: "15vh",
-		background: "#333",
-		display: "flex",
-		flexDirection: "column",
-		alignItems: "center",
-		zIndex: "99",
-	};
-
-	const footerStyle = {
-		position: "fixed",
-		bottom: 0,
-		left: 0,
-		width: "100%",
-		height: "10vh",
-		background: "#333",
-		display: "flex",
-		flexDirection: "column",
-		alignItems: "center",
-		zIndex: "99",
-	};
-
-	const mainStyle = {
-		position: "fixed",
-		top: "15vh",
-		bottom: "10vh",
-		left: 0,
-		width: "100%",
-		maxHeight: "75vh", // Set a max height for the main container
-	};
 
 	return (
 		<>
@@ -62,7 +66,7 @@ const Home = () => {
 			<footer style={footerStyle}>
 				{/* Footer section (currently empty) */}
 
-				{/* <Footer /> */}
+				<Footer />
 			</footer>
 		</>
 	);
@@ -109,20 +113,20 @@ export default HomeWrapper;
    - Contains the header section, which includes the `NavBar` and `UserInput` components.
 
 10. **`<main style={mainStyle}>...</main>`:**
-    - Contains the main section, which renders the nested components using the `Outlet` component from React Router.
+	- Contains the main section, which renders the nested components using the `Outlet` component from React Router.
 
 11. **`<footer style={footerStyle}>...</footer>`:**
-    - Contains the footer section, which is currently empty but can be extended by adding a `Footer` component or additional content.
+	- Contains the footer section, which is currently empty but can be extended by adding a `Footer` component or additional content.
 
 12. **`const HomeWrapper = () => {...};`:**
-    - Defines the `HomeWrapper` functional component, which wraps the `Home` component with the `AppProvider`. 
+	- Defines the `HomeWrapper` functional component, which wraps the `Home` component with the `AppProvider`. 
 	This ensures that the `Home` component has access to global state managed by the context provided by `AppProvider`.
 
 13. **`<AppProvider>...</AppProvider>`:**
-    - Wraps the `Home` component with the `AppProvider` to provide global state management.
+	- Wraps the `Home` component with the `AppProvider` to provide global state management.
 
 14. **`export default HomeWrapper;`:**
-    - Exports the `HomeWrapper` component as the default export of this module.
+	- Exports the `HomeWrapper` component as the default export of this module.
 
 In summary, `HomeWrapper.jsx` sets up the structure of the home page, including the header, main content with nested routes, and footer. 
 It also wraps the `Home` component with the `AppProvider` to provide global state management to its child components.*/

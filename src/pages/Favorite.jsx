@@ -1,53 +1,54 @@
-// Favourite.jsx
+// Favorite.jsx
 
-// import components and dependencies
-import React from "react";
-import { useAppContext } from "../components/appContext";
+// 1. import needed functions and dependencies
+import { useAppContext } from "../components/AppContext";
 
-const Favourite = () => {
+
+// Styles for div, ul, and li sections
+const divStyle = {
+	position: "fixed",
+	top: "15vh",
+	bottom: "10vh",
+	overflowY: "auto", // Enable vertical scrolling
+};
+
+const headerStyle = {
+	position: "fixed",
+	marginTop: "0%",
+	display: "flex",
+	flexDirection: "column",
+	justifyItems: "center",
+	width: "100%",
+	height: "8%",
+	background: "#242424",
+};
+
+const ulStyle = {
+	listStyle: "none",
+	display: "flex",
+	flexDirection: "row",
+	alignItems: "center",
+	flexWrap: "wrap",
+	marginTop: "5%",
+};
+
+const liStyle = {
+	margin: "20px", // Adjust the margin value as per your preference
+};
+
+const imgButtonContainerStyle = {
+	display: "flex",
+	flexDirection: "column",
+	alignItems: "center",
+	height: "auto",
+	boxSizing: "border-box", // Include padding and border in the total width and height
+};
+
+const Favorite = () => {
 	// Access global state and functions from the context
-	const { favourite, removeFavourite, formatCountdown } = useAppContext();
-
-	// Styles for the component
-	const divStyle = {
-		position: "fixed",
-		top: "15vh",
-		bottom: "10vh",
-		overflowY: "auto", // Enable vertical scrolling
-	};
-
-	const headerStyle = {
-		position: "fixed",
-		marginTop: "0%",
-		display: "flex",
-		flexDirection: "column",
-		justifyItems: "center",
-		width: "100%",
-		height: "8%",
-		background: "#242424",
-	};
-
-	const ulStyle = {
-		listStyle: "none",
-		display: "flex",
-		flexDirection: "row",
-		alignItems: "center",
-		flexWrap: "wrap",
-		marginTop: "5%",
-	};
-
-	const liStyle = {
-		margin: "20px", // Adjust the margin value as per your preference
-	};
-
-	const imgButtonContainerStyle = {
-		display: "flex",
-		flexDirection: "column",
-		alignItems: "center",
-		height: "auto",
-		boxSizing: "border-box", // Include padding and border in the total width and height
-	};
-
+	const { favorite, removeFavorite, formatCountdown } = useAppContext();
+	console.log("Favorite object:", favorite);
+	console.log("Favorite home:", favorite.homepage);
 	// JSX content for the Favourite component
 	return (
 		<div style={divStyle}>
@@ -56,35 +57,39 @@ const Favourite = () => {
 			</div>
 
 			<ul style={ulStyle}>
-				{/* maps over the favourite array */}
-				{favourite.map((favourite) => (
-					<li style={liStyle} key={favourite.id}>
+				{/* maps over the favorite array */}
+				{favorite.map((favorite) => (
+
+					<li style={liStyle} key={favorite.id}>
 						<div style={imgButtonContainerStyle}>
-							<h2>{favourite.name.substring(0, 10)}...</h2>
+							<h2>{favorite.name.substring(0, 10)}...</h2>
+							<a href={favorite.homepage} target="_blank" rel="noopener noreferrer">
+								Visit Homepage
+							</a>
 							<img
 								style={{ height: "100%", borderRadius: "5px" }}
-								src={`https://image.tmdb.org/t/p/w185${favourite.poster_path}`}
-								alt={`${favourite.name} Poster`}
+								src={`https://image.tmdb.org/t/p/w185${favorite.poster_path}`}
+								alt={`${favorite.name} Poster`}
 							/>
 							<p style={{ width: "60%" }}>
 								{/* utility function defined in the context */}
 								{formatCountdown(
-									favourite.nextEpisode?.air_date,
-									favourite.showLocation?.origin_country
+									favorite.nextEpisode?.air_date,
+									favorite.showLocation?.origin_country
 								)}
 							</p>
-							<button onClick={() => removeFavourite(favourite.id)}>
+							<button onClick={() => removeFavorite(favorite.id)}>
 								Remove
 							</button>
 						</div>
 					</li>
 				))}
 			</ul>
-		</div>
+		</div >
 	);
 };
 
-export default Favourite;
+export default Favorite;
 
 /*
 1. **`import React from "react";`:**
@@ -115,19 +120,19 @@ export default Favourite;
    - Contains an unordered list (`ul`) for displaying the list of favorite shows.
 
 10. **`{favourite.map((favourite) => (...))}`:**
-    - Maps over the `favourite` list and generates a list item (`li`) for each favorite show.
+	- Maps over the `favourite` list and generates a list item (`li`) for each favorite show.
 
 11. **`<li style={liStyle} key={favourite.id}>...</li>`:**
-    - Represents each list item, displaying information about the favorite show.
+	- Represents each list item, displaying information about the favorite show.
 
 12. **`<div style={imgButtonContainerStyle}>...</div>`:**
-    - Contains the content of each list item, including the show's name, poster image, countdown, and a "Remove" button.
+	- Contains the content of each list item, including the show's name, poster image, countdown, and a "Remove" button.
 
 13. **`<button onClick={() => removeFavourite(favourite.id)}>Remove</button>`:**
-    - Adds a button to remove the show from the favorites list, invoking the `removeFavourite` function.
+	- Adds a button to remove the show from the favorites list, invoking the `removeFavourite` function.
 
 14. **`export default Favourite;`:**
-    - Exports the `Favourite` component as the default export of this module.
+	- Exports the `Favourite` component as the default export of this module.
 
 In summary, `Favourite.jsx` displays a list of favorite shows along with relevant information. 
 Users can remove shows from their favorites list by clicking the "Remove" button. 

@@ -1,4 +1,5 @@
-import React from "react";
+// NotFound.jsx
+
 
 const NotFound = () => {
 	return <div>NotFound</div>;

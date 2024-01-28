@@ -1,58 +1,58 @@
 // Live.jsx
 
-// import components and dependencies
+// 1. import needed functions and dependencies
 import React, { useEffect, useState } from "react";
-import { useAppContext } from "../components/appContext";
+import { useAppContext } from "../components/AppContext";
 import { NavLink } from "react-router-dom";
+
+// Styles for div, ul, and li sections
+const divStyle = {
+	position: "fixed",
+	top: "15vh",
+	bottom: "10vh",
+	overflowY: "auto", // Enable vertical scrolling
+};
+
+const headerStyle = {
+	position: "fixed",
+	marginTop: "0%",
+	display: "flex",
+	flexDirection: "column",
+	justifyItems: "center",
+	width: "100%",
+	height: "8%",
+	background: "#242424",
+};
+
+const ulStyle = {
+	listStyle: "none",
+	display: "flex",
+	flexDirection: "row",
+	alignItems: "center",
+	flexWrap: "wrap",
+	marginTop: "5%",
+};
+
+const liStyle = {
+	margin: "20px", // Adjust the margin value as per your preference
+};
+
+const imgContainerStyle = {
+	display: "flex",
+	flexDirection: "column",
+	alignItems: "center",
+	height: "auto",
+	boxSizing: "border-box", // Include padding and border in the total width and height
+};
 
 const Live = () => {
 	// Access global state and functions from the context
-	const { addToFavourite } = useAppContext();
+	const { addToFavorite } = useAppContext();
 
 	// Local state to store today's airing shows, loading state, and error state
 	const [todayAiringShows, setTodayAiringShows] = useState([]);
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState(null);
-
-	// Styles for the component
-	const divStyle = {
-		position: "fixed",
-		top: "15vh",
-		bottom: "10vh",
-		overflowY: "auto", // Enable vertical scrolling
-	};
-
-	const headerStyle = {
-		position: "fixed",
-		marginTop: "0%",
-		display: "flex",
-		flexDirection: "column",
-		justifyItems: "center",
-		width: "100%",
-		height: "8%",
-		background: "#242424",
-	};
-
-	const ulStyle = {
-		listStyle: "none",
-		display: "flex",
-		flexDirection: "row",
-		alignItems: "center",
-		flexWrap: "wrap",
-		marginTop: "5%",
-	};
-
-	const liStyle = {
-		margin: "20px", // Adjust the margin value as per your preference
-	};
-
-	const imgContainerStyle = {
-		display: "flex",
-		flexDirection: "column",
-		alignItems: "center",
-		height: "auto",
-		boxSizing: "border-box", // Include padding and border in the total width and height
-	};
 
 	// Fetch today's airing shows using an effect
 	useEffect(() => {
@@ -106,7 +106,7 @@ const Live = () => {
 			{todayAiringShows.length === 0 && !loading && (
 				<p>No shows airing today.</p>
 			)}
-			// conditional render if shows are available
+			{/* conditional render if shows are available */}
 			{todayAiringShows.length > 0 && (
 				<ul style={ulStyle}>
 					{todayAiringShows.map((show) => (
@@ -119,8 +119,8 @@ const Live = () => {
 								/>
 								<div style={{ marginTop: "10px" }}>
 									<p>{show.name.substring(0, 20)}...</p>
-									<button onClick={() => addToFavourite(show)}>
-										<NavLink to="../favourite">Add to favourite</NavLink>
+									<button onClick={() => addToFavorite(show)}>
+										Add to favorite
 									</button>
 								</div>
 							</div>
@@ -147,8 +147,8 @@ export default Live;
 4. **`const Live = () => {...}`:**
    - Defines the `Live` functional component, representing the content of the "Live" page.
 
-5. **`const { addToFavourite } = useAppContext();`:**
-   - Destructures the `addToFavourite` function from the context, which allows adding shows to the favorites list.
+5. **`const { addTofavorite } = useAppContext();`:**
+   - Destructures the `addTofavorite` function from the context, which allows adding shows to the favorites list.
 
 6. **`const [todayAiringShows, setTodayAiringShows] = useState([]);`:**
    - Initializes local state to store today's airing shows.

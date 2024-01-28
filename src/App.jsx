@@ -3,30 +3,32 @@
 // import components and dependencies
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
+
+// 2. import components
 import HomeWrapper from "./pages/Home.jsx";
-import Favourite from "./pages/Favourite.jsx";
+import Favorite from "./pages/Favorite.jsx";
 import NotFound from "./pages/NotFound.jsx";
 import Live from "./pages/Live.jsx";
 import SearchResults from "./pages/SearchResults.jsx";
 
 function App() {
-	return (
-		<div className="App">
-			<Routes>
-				{/* React Router's Routes component for defining routes */}
+   return (
+      <div className="App">
+         <Routes>
+            {/* React Router's Routes component for defining routes */}
 
-				<Route path="/" element={<HomeWrapper />}>
-					{/* Main route for the application */}
+            <Route path="/" element={<HomeWrapper />}>
+               {/* Main route for the application */}
 
-					<Route index element={<Live />} />
-					{/* Nested routes for different pages */}
-					<Route path="favourite" element={<Favourite />} />
-					<Route path="*" element={<NotFound />} />
-					<Route path="searchResults" element={<SearchResults />} />
-				</Route>
-			</Routes>
-		</div>
-	);
+               <Route index element={<Live />} />
+               {/* Nested routes for different pages */}
+               <Route path="favorite" element={<Favorite />} />
+               <Route path="*" element={<NotFound />} />
+               <Route path="searchResults" element={<SearchResults />} />
+            </Route>
+         </Routes>
+      </div>
+   );
 }
 
 export default App;
