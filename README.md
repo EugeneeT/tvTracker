@@ -26,7 +26,7 @@ Make sure you have the following installed on your machine:
 2. Navigate to the project directory:
 
    ```bash
-   cd show-tracker-app
+   cd tvTracker
    ```
 
 3. Install dependencies:
@@ -55,19 +55,19 @@ Run the following command to start the development server:
 npm run dev
 ```
 
-Open your browser and go to [http://localhost:3000](http://localhost:3000) to view the app.
+View the app on the localhost, Vite will give you direction.
 
 ## Project Structure
 
-- **App.js**: Main component rendering the application routes using React Router.
-- **AppContext.js**: Context provider for managing state related to show tracking, searching, and favorites.
-- **HomeWrapper.js**: Wrapper component using the `ShowTrackerProvider` to provide context to the entire application.
-- **Live.js**: Component displaying today's airing shows fetched from the TMDb API.
-- **SearchResults.js**: Component displaying search results and allowing users to add shows to favorites.
-- **Favourite.js**: Component displaying user's favorite shows.
-- **UserInput.js**: Component for user input, allowing users to search for TV shows.
-- **NavBar.js**: Navigation bar component with links to the live shows and favorites pages.
-- **timeZoneData.js**: Data file containing timezone information for different countries.
+- **App.jsx**: Main component rendering the application routes using React Router.
+- **AppContext.jsx**: Context provider for managing state related to show tracking, searching, and favorites.
+- **HomeWrapper.jsx**: Wrapper component using the `AppProvider` to provide context to the entire application.
+- **Live.jsx**: Component displaying today's airing shows fetched from the TMDb API.
+- **SearchResults.jsx**: Component displaying search results and allowing users to add shows to favorites.
+- **Favorite.jsx**: Component displaying user's favorite shows.
+- **UserInput.jsx**: Component for user input, allowing users to search for TV shows.
+- **NavBar.jsx**: Navigation bar component with links to the live shows and favorites pages.
+- **timeZoneData.jsx**: Data file containing timezone information for different countries.
 
 ## Usage
 
@@ -80,6 +80,6 @@ Open your browser and go to [http://localhost:3000](http://localhost:3000) to vi
 
 Feel free to contribute to this project by opening issues or submitting pull requests. Please follow the [Contributing Guidelines](CONTRIBUTING.md).
 
-## License
+<!-- ## License
 
-This project is licensed under the [MIT License](LICENSE).
+This project is licensed under the [MIT License](LICENSE). -->
