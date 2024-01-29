@@ -31,7 +31,7 @@ const UserInput = () => {
 				type="text"
 				value={inputValue}
 				onChange={(e) => setInputValue(e.target.value)}
-				placeholder="Search for your favorite TV show"
+				placeholder="Look up your favorite Show"
 			/>
 			<button
 				style={{ ...searchStyle, ...{ borderRadius: "0 7px 7px 0" } }}

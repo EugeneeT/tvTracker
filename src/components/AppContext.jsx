@@ -82,7 +82,9 @@ const AppProvider = ({ children }) => {
 		} finally {
 			// Set loading to false, indicating that the search operation is complete
 			setLoading(false);
+			setInputValue("");
 		}
+
 	};
 
 	// Function to handle input change in search bar
@@ -105,7 +107,7 @@ const AppProvider = ({ children }) => {
 			// If the show is already in the favorite list, do nothing
 			if (isAlreadyInFavorite) {
 				// Alert commented out for now
-				// alert("Show is already in favorite.");
+				alert("Show is already in favorite.");
 				return;
 			}
 
@@ -121,7 +123,7 @@ const AppProvider = ({ children }) => {
 			// If the fetch is successful (status code 200)
 			if (response.ok) {
 				// Alert commented out for now
-				// alert("Show was added to favorite.");
+				alert("Show was added to favorite.");
 
 				// Parse the response JSON
 				const data = await response.json();
@@ -180,7 +182,7 @@ const AppProvider = ({ children }) => {
 				return "Air date for upcoming episode unconfirmed.\nCheck on";
 			}
 
-			// Find the timezone for the origin country
+			// Find the timezone for the origin country and store in timeZoneEntry
 			const timeZoneEntry = timeZoneData.find(
 				(entry) => entry.iso_3166_1 === origin_country
 			);

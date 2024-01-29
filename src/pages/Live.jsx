@@ -3,7 +3,6 @@
 // 1. import needed functions and dependencies
 import React, { useEffect, useState } from "react";
 import { useAppContext } from "../components/AppContext";
-import { NavLink } from "react-router-dom";
 
 // Styles for div, ul, and li sections
 const divStyle = {
